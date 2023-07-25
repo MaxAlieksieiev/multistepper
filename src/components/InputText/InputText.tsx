@@ -21,6 +21,6 @@ export const InputText: FC<IInputText> =({ label, type='text', ...props }) => {
       onChange={field.onChange}
       name={field.name}
       error={!!(meta.touched && meta.error)}
-      helperText={meta.error}
+      helperText={meta.touched && meta.error ? meta.error : ''}
     />);
 };
