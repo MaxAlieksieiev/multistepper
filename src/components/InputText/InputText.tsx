@@ -5,13 +5,14 @@ import { useField } from 'formik';
 
 interface IInputText {
   label: string;
-  props: any
+  name?: string;
 }
 
-export const InputText: FC<IInputText> =({ label, props }) => {
-  const [field, meta] = useField(props);
+export const InputText: FC<IInputText> =({ label, ...props }) => {
+  const [field, meta] = useField(props as any);
   return (
     <TextField
+      sx={{ marginBottom: '10px' }}
       fullWidth
       label={label}
       value={field.value}
