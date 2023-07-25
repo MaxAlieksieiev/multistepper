@@ -1,25 +1,23 @@
 import { Box, Button } from '@mui/material';
 
 import { FC, useEffect, useState } from 'react';
+import { InputText } from 'components/index';
+import { IAccountDetailsForm } from 'core/index';
 import { Form,Formik, FormikProps } from 'formik';
-
-import { InputText } from '../../../../components';
-import { IAccountDetailsForm } from '../../../../core';
-import { IUserState, useUserStore } from '../../../../store/user.store';
+import { IStepperState, IUserState, useStepperStore,useUserStore  } from 'store/index';
 
 import { initialValues, validationSchema } from './data';
 
 export interface IAccountDetailsProps {
-  nextStep: () => void;
-  previousStep: () => void;
   openModal: () => void;
-  resetStep: () => void;
 }
 
-export const AccountDetails: FC<IAccountDetailsProps> = ({ previousStep, openModal, resetStep }) => {
+export const AccountDetails: FC<IAccountDetailsProps> = ({ openModal }) => {
   const [initValues, setInitValues] = useState(initialValues);
   const accountDetails = useUserStore((state: IUserState) => state.accountDetails);
   const addAccountDetails = useUserStore((state: IUserState) => state.addAccountDetails);
+  const resetStep = useStepperStore((state: IStepperState) => state.resetStep);
+  const previousStep = useStepperStore((state: IStepperState) => state.previousStep);
 
   useEffect(() => {
     if(accountDetails) {
