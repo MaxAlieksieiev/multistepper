@@ -2,25 +2,20 @@
 import { Box, Button } from '@mui/material';
 
 import { FC, useEffect,useState } from 'react';
+import { InputText } from 'components/index';
+import { IUserDetails } from 'core/index';
 import { Form, Formik, FormikProps } from 'formik';
-
-import { InputText } from '../../../../components';
-import { IUserDetails } from '../../../../core';
-import { IUserState, useUserStore } from '../../../../store/user.store';
+import { IStepperState, IUserState, useStepperStore, useUserStore } from 'store/index';
 
 import { initialValues, validationSchema } from './data';
 
-export interface IUserDetailsProps {
-  nextStep: () => void,
-}
 
-
-
-export const UserDetails: FC<IUserDetailsProps> = ({ nextStep }) => {
+export const UserDetails: FC = () => {
 
   const [initValues, setInitValues] = useState(initialValues);
   const userDetails = useUserStore((state: IUserState) => state.userDetails);
   const addUserDetails = useUserStore((state: IUserState) => state.addUserDetails);
+  const nextStep = useStepperStore((state: IStepperState) => state.nextStep);
 
   useEffect(() => {
     if(userDetails) {

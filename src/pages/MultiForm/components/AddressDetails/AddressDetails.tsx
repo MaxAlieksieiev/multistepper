@@ -1,23 +1,19 @@
 import { Box, Button } from '@mui/material';
 
 import { FC, useEffect, useState } from 'react';
+import { InputText } from 'components/index';
+import { IAddressDetails } from 'core/index';
 import { Form,Formik, FormikProps } from 'formik';
-
-import { InputText } from '../../../../components';
-import { IAddressDetails } from '../../../../core';
-import { IUserState,useUserStore } from '../../../../store/user.store';
+import { IStepperState,IUserState,useStepperStore, useUserStore } from 'store/index';
 
 import { initialValues, validationSchema } from './data';
 
-export interface IAddressDetailsProps {
-  nextStep: () =>  void;
-  previousStep: () => void;
-}
-
-export const AddressDetails: FC<IAddressDetailsProps> = ({ nextStep, previousStep }) => {
+export const AddressDetails: FC = () => {
   const [initValues, setInitValues] = useState(initialValues);
   const addressDetails = useUserStore((state: IUserState) => state.addressDetails);
   const addAddressDetails = useUserStore((state: IUserState) => state.addAddressDetails);
+  const nextStep = useStepperStore((state: IStepperState) => state.nextStep);
+  const previousStep = useStepperStore((state: IStepperState) => state.previousStep);
 
   useEffect(() => {
     if(addressDetails) {
