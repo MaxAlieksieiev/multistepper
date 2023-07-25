@@ -1,6 +1,5 @@
 import { create } from 'zustand';
 
-/* eslint-disable @typescript-eslint/no-empty-function */
 import { IAccountDetails, IAddressDetails, IUserDetails } from '../core';
 
 export interface IUserState {
@@ -9,7 +8,7 @@ export interface IUserState {
   accountDetails: IAccountDetails,
   addUserDetails: (details: IUserDetails) => void;
   addAddressDetails: (details: IAddressDetails) => void;
-  addAccountDetails: () => void;
+  addAccountDetails: (details: IAccountDetails) => void;
 }
 
 export const useUserStore = create<IUserState>(set => ({
@@ -30,5 +29,5 @@ export const useUserStore = create<IUserState>(set => ({
   },
   addUserDetails: (details: IUserDetails) => set({ userDetails: { ...details } }),
   addAddressDetails: (details: IAddressDetails) => set({ addressDetails: { ...details } }),
-  addAccountDetails: () => {}
+  addAccountDetails: (details: IAccountDetails) => set({ accountDetails: { ...details } }),
 }));

@@ -16,7 +16,7 @@ export interface IAddressDetailsProps {
 
 export const AddressDetails: FC<IAddressDetailsProps> = ({ nextStep, previousStep }) => {
   const [initValues, setInitValues] = useState(initialValues);
-  const addressDetails= useUserStore((state: IUserState) => state.addressDetails);
+  const addressDetails = useUserStore((state: IUserState) => state.addressDetails);
   const addAddressDetails = useUserStore((state: IUserState) => state.addAddressDetails);
 
   useEffect(() => {

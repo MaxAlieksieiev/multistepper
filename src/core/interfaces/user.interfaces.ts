@@ -16,4 +16,8 @@ export interface IAccountDetails {
   password: string;
 };
 
+export interface IAccountDetailsForm extends IAccountDetails {
+  comparedPassword: string;
+}
+
 export interface IUserInterface extends IUserDetails, IAddressDetails, IAccountDetails {};
