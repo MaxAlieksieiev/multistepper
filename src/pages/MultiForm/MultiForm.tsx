@@ -7,6 +7,7 @@ import { IStepperState, useStepperStore } from 'store/index';
 import { AccountDetails, AddressDetails, UserDetails } from './components';
 import { STEPS } from './data';
 
+
 export const MultiForm = () => {
   const [isOpen, setIsOpen] = useState(false);
   const step = useStepperStore((state: IStepperState) => state.currentStep);
