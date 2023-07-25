@@ -41,11 +41,14 @@ export const AddressDetails: FC<IAddressDetailsProps> = ({ nextStep, previousSte
       >
         {(props: FormikProps<IAddressDetails>) => (
           <Form>
-            <InputText label='Street' name='firstName' {...props}/>
-            <InputText label='Last Name' name='lastName' {...props} />
-            <InputText label='Email' name='email' {...props} />
-            <Button type='submit' variant='contained'>Next</Button>
-            <Button onClick={previousStep} variant='contained'>Previous</Button>
+            <InputText label='Street' name='street' {...props}/>
+            <InputText label='City' name='city' {...props} />
+            <InputText label='State' name='state' {...props} />
+            <InputText label='Zip Code' name='zipCode' {...props} />
+            <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Button color='error' onClick={previousStep} variant='contained'>Previous</Button>
+              <Button type='submit' variant='contained'>Next</Button>
+            </Box>
           </Form>
         )}
       </Formik>
