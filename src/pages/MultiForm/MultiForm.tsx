@@ -2,14 +2,14 @@ import { Box, Step, StepLabel,Stepper } from '@mui/material';
 
 import { useMemo, useState } from 'react';
 
+import { CustomModal } from '../../components';
+
 import { AccountDetails, AddressDetails, UserDetails } from './components';
 import { STEPS } from './data';
 
 export const MultiForm = () => {
   const [step, setStep] = useState(0);
-  const totalSteps = STEPS.length;
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const isLastStep = useMemo(() => totalSteps - 1 === step, [totalSteps, step]);
+  const [isOpen, setIsOpen] = useState(false);
 
   const nextStep = () => {
     setStep(step + 1);
@@ -19,6 +19,11 @@ export const MultiForm = () => {
     setStep(step - 1);
   };
 
+  const handleClose = () => setIsOpen(false);
+  const handleOpen = () => setIsOpen(true);
+
+  const resetStep = () => setStep(0);
+
   const currentLayout = useMemo(() => {
     switch(step) {
     case 0:
@@ -26,7 +31,7 @@ export const MultiForm = () => {
     case 1:
       return <AddressDetails nextStep={nextStep} previousStep={previousStep} />;
     case 2:
-      return <AccountDetails nextStep={nextStep} previousStep={previousStep} />;
+      return <AccountDetails nextStep={nextStep} previousStep={previousStep} openModal={handleOpen} resetStep={resetStep} />;
     default:
       return <UserDetails nextStep={nextStep} />;
     }
@@ -45,6 +50,7 @@ export const MultiForm = () => {
       <Box sx={{ margin: '0 auto', width: '500px' }}>
         {currentLayout}
       </Box>
+      {isOpen && <CustomModal isOpen={isOpen} title='You successful registrate' handleClose={handleClose} />}
     </Box>
   );
 };
