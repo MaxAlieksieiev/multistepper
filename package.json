@@ -34,7 +34,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "eslint": "eslint . --ext .ts,.tsx",
+    "prepare": "husky install",
+    "pre-commit": "lint-staged"
   },
   "eslintConfig": {
     "extends": [
@@ -56,5 +60,14 @@
   },
   "engines": {
     "node": "^18.13.0"
+  },
+  "hooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": "eslint . --ext .js,.jsx,.ts,.tsx --ignore-path .gitignore --ignore-path .eslintignore -c .eslintrc.json --max-warnings=0 --fix"
+  },
+  "overrides": {
+    "typescript": "^5.0.2"
   }
 }
